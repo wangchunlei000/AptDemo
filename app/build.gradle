@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.1"
+    defaultConfig {
+        applicationId "com.tuya.smart.apt"
+        minSdkVersion 15
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                includeCompileClasspath true
+////                arguments = [
+////                        'resourcePackageName': "com.tuya.smart.apt",
+////                        "androidManifestFile": "$projectDir/src/main/AndroidManifest.xml".toString()
+////                ]
+//            }
+//        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android {
+        compileOptions {
+            sourceCompatibility 1.8
+            targetCompatibility 1.8
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.0.0'
+
+//    implementation('com.tuya.smart.apt:apt-processor:1.0.0')
+//    annotationProcessor('com.tuya.smart.apt:apt-processor:1.0.0')
+
+//    implementation project(":apt-processor")
+    implementation project(":apt-annotation")
+    annotationProcessor project(":apt-processor")
+    implementation project(":apt-processor")
+}

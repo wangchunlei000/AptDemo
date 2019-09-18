@@ -1,0 +1,25 @@
+apply plugin: 'java-library'
+
+dependencies {
+//    implementation 'org.apache.commons:commons-lang3:3.4'
+//    implementation 'org.apache.commons:commons-collections4:4.1'
+    implementation 'com.google.auto.service:auto-service:1.0-rc2'
+    implementation 'com.squareup:javapoet:1.10.0'
+    implementation project(':apt-annotation')
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri("${rootDir}/repo"))
+            pom.groupId = 'com.tuya.smart.apt'
+            pom.artifactId = 'apt-processor'
+            pom.version = "1.0.2"
+        }
+    }
+}

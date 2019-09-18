@@ -1,0 +1,14 @@
+apply plugin: 'java-library'
+
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri("${rootDir}/repo"))
+            pom.groupId = 'com.tuya.smart.apt'
+            pom.artifactId = 'apt-annotation'
+            pom.version = "1.0.2"
+        }
+    }
+}
